@@ -27,7 +27,7 @@ import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
-import GeneratePodcast from "@/components/ui/GeneratePodcast"
+import GeneratePodcast from "@/components/GeneratePodcast"
 import GenerateThumbnail from "@/components/GenerateThumbnail"
 import { Loader } from "lucide-react"
 import { Id } from "@/convex/_generated/dataModel"
@@ -80,9 +80,9 @@ const CreatePodcast = () => {
           name="podcastTitle"
           render={({ field }) => (
             <FormItem className="flex flex-col gap-2.5">
-              <FormLabel className="text-16 font-bold text-white-1">Username</FormLabel>
+              <FormLabel className="text-16 font-bold text-white-1">Title</FormLabel>
               <FormControl>
-                <Input className="input-class focus-visible:ring-orange-1" placeholder="Capstone Podcast" {...field} />
+                <Input className="input-class focus-visible:ring-offset-orange-1" placeholder="Capstone Podcast" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
@@ -98,7 +98,7 @@ const CreatePodcast = () => {
           </Label>
 
           <Select onValueChange={(value) => setVoiceType(value)}>
-            <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1')}>
+            <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1 focus-visible:ring-offset-orange-1')}>
               <SelectValue placeholder="Select AI Voice" className="placeholder: text-gray-1" />
             </SelectTrigger>
             <SelectContent className="text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1">
@@ -125,7 +125,7 @@ const CreatePodcast = () => {
             <FormItem className="flex flex-col gap-2.5">
               <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
               <FormControl>
-                <Textarea className="input-class focus-visible:ring-orange-1" placeholder="Write a short podcast description" {...field} />
+                <Textarea className="input-class focus-visible:ring-offset-orange-1" placeholder="Write a short podcast description" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
