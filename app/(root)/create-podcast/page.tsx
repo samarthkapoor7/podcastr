@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { string, z } from "zod"
+import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -139,7 +139,7 @@ const CreatePodcast = () => {
           <GeneratePodcast 
              setAudioStorageId={setAudioStorageId}
              setAudio={setAudioUrl}
-             voiceType={voiceType}
+             voiceType={voiceType!}
              audio={audioUrl}
              voicePrompt={voicePrompt}
              setVoicePrompt={setVoicePrompt}
