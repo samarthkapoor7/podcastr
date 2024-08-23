@@ -4,6 +4,10 @@ const nextConfig = {
         remotePatterns: [{
             protocol: 'https',
             hostname: 'lovely-flamingo-139.convex.cloud'
+        },
+        {
+            protocol: 'https',
+            hostname: 'beaming-falcon-321.convex.cloud'
         }
     ]
   }
