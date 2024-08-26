@@ -8,7 +8,11 @@ const nextConfig = {
         {
             protocol: 'https',
             hostname: 'beaming-falcon-321.convex.cloud'
-        }
+        },
+        {
+            protocol: 'https',
+            hostname: 'img.clerk.com'
+        },
     ]
   }
 };
