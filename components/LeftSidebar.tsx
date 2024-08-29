@@ -8,13 +8,18 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import { Button } from './ui/button';
+import { useAudio } from '@/providers/AudioProvider';
 
 const LeftSiderbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { signOut } = useClerk();
+  const { audio } = useAudio();
+
   return (
-    <section className = "left_sidebar">
+    <section className = {cn("left_sidebar h-[calc(100vh-5px]", {
+      'h-[calc(100vh-140px)]': audio?.audioUrl
+    })}>
         <nav className = "flex flex-col gap-6">
           <Link href="/" className="flex cursor-pointer items-center gap-1 pb-10 max-lg:justify-center">
           <Image src = "\icons\logo.svg" alt="logo" width={23} height={27}/>
