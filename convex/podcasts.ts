@@ -96,9 +96,28 @@ export const getPodcastById = query({
     podcastId: v.id("podcasts"),
   },
   handler: async (ctx, args) => {
-    return await ctx.db.get(args.podcastId);
+    try {
+      // Validate the podcastId
+      if (!args.podcastId) {
+        throw new Error('Podcast ID is required.');
+      }
+
+      // Fetch the podcast from the database
+      const podcast = await ctx.db.get(args.podcastId);
+
+      // If no podcast is found, throw an error
+      if (!podcast) {
+        throw new Error('Podcast not found.');
+      }
+
+      return podcast;
+    } catch (error) {
+      console.error('Error fetching podcast:', error);
+      throw new Error('Failed to fetch podcast.');
+    }
   },
 });
+
 
 // this query will get the podcasts based on the views of the podcast , which we are showing in the Trending Podcasts section.
 export const getTrendingPodcasts = query({
