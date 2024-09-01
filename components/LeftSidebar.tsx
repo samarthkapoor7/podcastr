@@ -14,7 +14,7 @@ const LeftSiderbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { signOut } = useClerk();
-  const { audio } = useAudio();
+  const { audio } = useAudio(); 
 
   return (
     <section className = {cn("left_sidebar h-[calc(100vh-5px]", {
