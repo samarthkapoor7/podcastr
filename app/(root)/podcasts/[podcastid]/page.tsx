@@ -14,7 +14,12 @@ import React from 'react';
 const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'podcasts'> } }) => {
   const { user } = useUser();
 
-  // Ensure podcastId is defined
+  // Always call hooks at the top level
+  const podcast = useQuery(api.podcasts.getPodcastById, { podcastId });
+  const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, { podcastId });
+
+  // Add error handling for loading and fetching states
+  if (!podcast || !similarPodcasts) return <LoaderSpinner />;
   if (!podcastId) {
     console.error('Missing podcastId');
     return (
@@ -25,13 +30,6 @@ const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'po
       />
     );
   }
-
-  // Fetch podcast details
-  const podcast = useQuery(api.podcasts.getPodcastById, { podcastId });
-  const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, { podcastId });
-
-  // Check loading states
-  if (!podcast || !similarPodcasts) return <LoaderSpinner />;
 
   const isOwner = user?.id === podcast?.authorId;
 
