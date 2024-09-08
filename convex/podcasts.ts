@@ -93,12 +93,19 @@ export const getAllPodcasts = query({
 // this query will get the podcast by the podcastId.
 export const getPodcastById = query({
   args: {
-    podcastId: v.id("podcasts"),
+    podcastId: v.optional(v.id("podcasts")), // Make podcastId optional
   },
   handler: async (ctx, args) => {
+    // If podcastId is not provided, handle the case accordingly
+    if (!args.podcastId) {
+      throw new Error("podcastId is required to fetch a podcast.");
+    }
+
+    // Fetch the podcast by its ID
     return await ctx.db.get(args.podcastId);
   },
 });
+
 
 // this query will get the podcasts based on the views of the podcast , which we are showing in the Trending Podcasts section.
 export const getTrendingPodcasts = query({
