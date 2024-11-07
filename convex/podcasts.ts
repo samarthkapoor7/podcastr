@@ -93,10 +93,15 @@ export const getAllPodcasts = query({
 // this query will get the podcast by the podcastId.
 export const getPodcastById = query({
   args: {
-    podcastId: v.id("podcasts"), // Remove optional, making it required
+    podcastId: v.optional(v.id("podcasts")), // Make podcastId optional
   },
   handler: async (ctx, args) => {
-    // Since podcastId is required, we no longer need to check for its presence here
+    // Handle cases where podcastId is not provided
+    if (!args.podcastId) {
+      throw new Error("podcastId is required to fetch a podcast.");
+    }
+
+    // Fetch the podcast by its ID
     return await ctx.db.get(args.podcastId);
   },
 });
