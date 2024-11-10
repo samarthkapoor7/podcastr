@@ -12,7 +12,7 @@ import LoaderSpinner from "./LoaderSpinner";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
 
-const PodcastDetailPlayer = ({
+export const PodcastDetailPlayer = ({
   audioUrl,
   podcastTitle,
   author,
