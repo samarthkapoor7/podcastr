@@ -92,10 +92,13 @@ export const getAllPodcasts = query({
 
 export const getPodcastById = query({
   args: v.object({
-    podcastId: v.id("podcasts"), // Ensure `podcastId` is a valid ID of type "podcasts"
+    podcastId: v.id("podcasts"),
   }),
   handler: async (ctx, { podcastId }) => {
-    return await ctx.db.get(podcastId); // Fetch the podcast by ID
+    if (!podcastId) {
+      throw new Error("Podcast ID is required");
+    }
+    return await ctx.db.get(podcastId);
   },
 });
 
